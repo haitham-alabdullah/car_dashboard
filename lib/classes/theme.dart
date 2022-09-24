@@ -46,10 +46,10 @@ class LiTheme {
   static Color getTextColor() {
     final isDark = Get.find<SettingsProvider>().isDarkMode;
     if (isDark) return textColorLight;
-    return textColorDark;
+    return primary;
   }
 
-  static TextStyle textStyle({double size = 16, Color? color}) {
+  static TextStyle textStyle({double size = 14, Color? color}) {
     return TextStyle(
       color: color ?? getTextColor(),
       fontWeight: FontWeight.w500,
@@ -57,7 +57,7 @@ class LiTheme {
     );
   }
 
-  static TextStyle boldTextStyle({double size = 18, Color? color}) {
+  static TextStyle boldTextStyle({double size = 16, Color? color}) {
     return TextStyle(
       color: color ?? getTextColor(),
       fontWeight: FontWeight.w600,
@@ -87,6 +87,20 @@ class LiTheme {
     } catch (e) {
       return const SizedBox();
     }
+  }
+
+  static Widget text(
+    String text, {
+    TextStyle? style,
+    TextAlign? align,
+    TextDirection? direction,
+  }) {
+    return Text(
+      text.tr,
+      style: style ?? textStyle(),
+      textAlign: align,
+      textDirection: direction,
+    );
   }
 
   static Widget isEmpty(String mesage) {

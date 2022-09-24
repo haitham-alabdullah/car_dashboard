@@ -14,6 +14,7 @@ class GeneralScaffold extends StatelessWidget {
     final settings = Get.find<SettingsProvider>();
     return Scaffold(
       backgroundColor: LiTheme.bgColor(),
+      floatingActionButtonLocation: FloatingActionButtonLocation.miniStartTop,
       floatingActionButton: FloatingActionButton(
         backgroundColor: LiTheme.onBgColor(),
         onPressed: () {
