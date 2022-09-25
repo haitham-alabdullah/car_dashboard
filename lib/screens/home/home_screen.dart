@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
-import 'bottom_bottons/bottom_botton_item_add.dart';
 import 'bottom_bottons/bottom_button_item.dart';
-import 'google_navigation/google_navigation_widget.dart';
+import 'car_codes/car_gear_codes_widget.dart';
+import 'car_codes/car_safe_codes_widget.dart';
+import 'car_codes/car_warning_codes_widget.dart';
+import 'google_navigation/device_apps_widget.dart';
 import 'music_player/music_player_widget.dart';
 import 'odo_metter/odo_metter_screen.dart';
 
@@ -24,6 +27,17 @@ class _HomeScreenState extends State<HomeScreen> {
             key: const ValueKey('main_column'),
             children: [
               const Expanded(child: OdoMater()),
+              const SizedBox(height: 10),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  const CarGearCodesWidget(),
+                  const CarSafeCodesWidget(),
+                ],
+              ),
+              const SizedBox(height: 20),
+              const CarWarningCodesWidget(),
+              const SizedBox(height: 20),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 key: const ValueKey('buttons_row'),
@@ -52,7 +66,12 @@ class _HomeScreenState extends State<HomeScreen> {
                     icon: Icons.volume_up_rounded,
                     value: '40%',
                   ),
-                  BottomButtonItemAdd()
+                  BottomButtonItem(
+                    key: ValueKey('ABS'),
+                    title: 'ABS',
+                    icon: Icons.volume_up_rounded,
+                    value: '40%',
+                  ),
                 ],
               ),
             ],
@@ -62,11 +81,7 @@ class _HomeScreenState extends State<HomeScreen> {
           key: const ValueKey('2nd_column'),
           children: const [
             Expanded(
-              child: GoogleNavigationsWidget(
-                title: 'Engine',
-                icon: Icons.car_rental_rounded,
-                value: 'ON',
-              ),
+              child: DeviceAppsWidget(),
             ),
             MusicPlayerWidget()
           ],

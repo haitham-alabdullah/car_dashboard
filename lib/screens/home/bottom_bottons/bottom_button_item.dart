@@ -20,10 +20,10 @@ class BottomButtonItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetBuilder<SettingsProvider>(builder: (provider) {
       return Padding(
-        padding: const EdgeInsets.only(left: 20, bottom: 25),
+        padding: const EdgeInsets.only(bottom: 25),
         child: GestureDetector(
           child: Container(
-            constraints: const BoxConstraints(minWidth: 125, maxWidth: 150),
+            width: 130,
             padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 5),
             height: 85,
             decoration: BoxDecoration(

@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'dart:math';
 
-import 'package:connectivity_plus/connectivity_plus.dart';
+// import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
@@ -29,17 +29,17 @@ class App {
     );
   }
 
-  static Future<bool> isNotConnected() async {
-    final isWifiOnly = Get.find<SettingsProvider>().wifiOnly;
-    return await Connectivity().checkConnectivity().then((value) {
-      if (value == ConnectivityResult.none) {
-        throw 'NO_INTERNET';
-      } else if (isWifiOnly && value != ConnectivityResult.wifi) {
-        throw 'WIFI_ONLY_MODE';
-      }
-      return false;
-    });
-  }
+  // static Future<bool> isNotConnected() async {
+  //   final isWifiOnly = Get.find<SettingsProvider>().wifiOnly;
+  //   return await Connectivity().checkConnectivity().then((value) {
+  //     if (value == ConnectivityResult.none) {
+  //       throw 'NO_INTERNET';
+  //     } else if (isWifiOnly && value != ConnectivityResult.wifi) {
+  //       throw 'WIFI_ONLY_MODE';
+  //     }
+  //     return false;
+  //   });
+  // }
 
   static String getRandomKey() {
     final ran = Random.secure();

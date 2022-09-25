@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
 import '../providers/settings_provider.dart';
@@ -49,41 +50,50 @@ class LiTheme {
     return primary;
   }
 
-  static TextStyle textStyle({double size = 14, Color? color}) {
+  static TextStyle textStyle(
+      {double size = 14, Color? color, List<Shadow>? shadows}) {
     return TextStyle(
       color: color ?? getTextColor(),
       fontWeight: FontWeight.w500,
       fontSize: size,
+      shadows: shadows,
     );
   }
 
-  static TextStyle boldTextStyle({double size = 16, Color? color}) {
+  static TextStyle boldTextStyle(
+      {double size = 16, Color? color, List<Shadow>? shadows}) {
     return TextStyle(
       color: color ?? getTextColor(),
       fontWeight: FontWeight.w600,
       fontSize: size,
+      shadows: shadows,
     );
   }
 
-  static Widget getSvg(String fileName,
-      {double? size, Color? color, BoxFit? fit}) {
+  static Widget getSvg(
+    String fileName, {
+    double? size,
+    Color? color,
+    BoxFit? fit,
+    bool isCode = false,
+    List<Shadow>? shadows,
+  }) {
     try {
-      // final item = SvgPicture.asset(
-      //   'assets/images/svgs/$fileName.svg',
-      //   key: Key(fileName),
-      //   width: size ?? 20,
-      //   height: size ?? 20,
-      //   fit: BoxFit.fitHeight,
-      //   color: color ?? primary,
-      //   colorBlendMode: BlendMode.srcIn,
-      //   theme: SvgTheme(
-      //     fontSize: 20,
-      //     xHeight: size,
-      //   ),
-      //   clipBehavior: Clip.antiAliasWithSaveLayer,
-      // );
-      // return item;
-      return const SizedBox();
+      final item = SvgPicture.asset(
+        'assets/images/svgs/$fileName.svg',
+        key: Key(fileName),
+        width: size ?? 25,
+        height: size ?? 25,
+        fit: BoxFit.fitHeight,
+        color: color ?? (isCode ? getPrimary().withOpacity(.5) : primary),
+        colorBlendMode: BlendMode.srcIn,
+        theme: SvgTheme(
+          fontSize: 25,
+          xHeight: size,
+        ),
+        clipBehavior: Clip.antiAliasWithSaveLayer,
+      );
+      return item;
     } catch (e) {
       return const SizedBox();
     }
@@ -129,11 +139,11 @@ class LiTheme {
     );
   }
 
-  static BoxShadow boxShadow() {
+  static BoxShadow boxShadow({Color? color}) {
     return BoxShadow(
-      color: Colors.black12.withOpacity(.1),
-      offset: const Offset(0, .1),
-      blurRadius: 2,
+      color: (color ?? primary).withOpacity(.1),
+      offset: const Offset(0, .3),
+      blurRadius: 5,
       spreadRadius: .1,
     );
   }
